@@ -1,11 +1,10 @@
 #include <stdio.h>
-#include <stdio.h>
 int j=0;
 
 void spsstrcpy(char a[], char b[], int c, int d){
     for(int i=c;i!=d+1;i++){
         b[j]=a[i];
-        printf("\n %d %d",j,i);
+        //printf("\n %d %d",j,i);
         j++;
     }
     b[j]='\0';
