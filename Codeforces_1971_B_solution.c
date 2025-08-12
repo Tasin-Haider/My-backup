@@ -1,41 +1,52 @@
-#include <stdio.h>
-#include <string.h>
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
 
-int smchcnt;
+char cp[101];
 
-int cksstr(char a[11]){
-    for(int i=0;i<strlen(a);i++){
-        if(a[i]==a[i+1]){
-            smchcnt++;
-        }
-        
+char *movind(char *arr, int len){
+    int cnt=0;
+    char temp=arr[0];
+    for(int i=1;i<len;i++){
+        cp[cnt++]=arr[i];
     }
-    return smchcnt;
+    cp[cnt++]=temp;
+    cp[cnt]='\0';
+    return cp;
 }
 
+int chkscharr(char *arr){
+    char temp=arr[0];
+    int len=strlen(arr);
+    int i;
+    for(i=0;i<len;i++){
+        if(arr[i]!=temp){
+            break;
+        }
+    }
+    return i;
+}
 
 int main(){
-    int tst_c;
-    scanf("%d",&tst_c);
-    char a[11];
-    for(int i=0;i<tst_c;i++){
-       scanf("%s",a);
-       char dumarr[11];
-       if(cksstr(a)==strlen(a)-1 || strlen(a)==1){
-        printf("NO\n");
-       }
-       else{
-        printf("YES\n");
-        for(int i=strlen(a);i!=-1;i--){
-            printf("%c",a[i]);
-        }
-        printf("\n");
-        
-       }
-       
+    int tms=0;
+    scanf("%d",&tms);
+    char *warr[tms];
+    for(int i=0;i<tms;i++){
+        warr[i] = malloc(101 * sizeof(char));
+        scanf("%s",warr[i]);
     }
-    //printf("\n%d",smchcnt);
-    //printf("%d", strlen(a));
-    exit:
-    return 0;
+    for(int i=0;i<tms;i++){
+        int len=strlen(warr[i]);
+        if(chkscharr(warr[i])!=len){
+            printf("YES\n");
+            printf("%s\n",movind(warr[i],len));
+        }
+        else
+            printf("NO\n");
+    }
+    //printf("%d",chkscharr("aaaab"));
+    //printf("%s",movind("Hello",5));
+    for(int i=0;i<tms;i++){
+        free(warr[i]);
+    }
 }
