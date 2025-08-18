@@ -8,7 +8,7 @@ int rep_c=0;
 int long_rep=0;
 
 void rs_et(){
-    memset(foundi,0,pos_fi*sizeof(int));
+    memset(foundi,0,sizeof(foundi));
     pos_fi=0;
     rep_c=0;
     long_rep=0;
@@ -19,7 +19,7 @@ int search_reps(char *arr, char c){
     for(int i=0;i<len;i++){
         if(arr[i]==c){
             rep_c++;
-            if(arr[i+1]!=c){
+            if(i==len-1 || arr[i+1]!=c){
                 foundi[pos_fi++]=rep_c;
                 rep_c=0;
             }
@@ -45,3 +45,4 @@ int main(){
     printf("Longest rep of %c: %d",c,long_rep);
     rs_et();
 }
+
