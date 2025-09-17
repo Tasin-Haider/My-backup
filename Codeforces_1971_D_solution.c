@@ -87,7 +87,7 @@ char *delftind(char *in_arr, char *out_arr, int stind, int edind) {
     return out_arr;
 }
 
-int search_reps(char *arr, char c){
+void search_reps(char *arr, char c){
     int len=strlen(arr);
     for(int i=0;i<len;i++){
         if(arr[i]==c){
@@ -176,12 +176,12 @@ int main(){
             memcpy(sttmp,searchsubstr(spsstrcpyv2(temp,bft,off_set,strlen(temp)),pattern),2*sizeof(int));
             off_set=0;
             if(sttmp[0]!=-1&&sttmp[1]!=-1){
-                //printf("Delete from %d to %d for iteration %d of total %d runs\n",sttmp[0],sttmp[1],i,iscount);
+                printf("Delete from %d to %d for iteration %d of total %d runs\n",sttmp[0],sttmp[1],i,iscount);
                 off_set+=sttmp[0]+sttmp[1];
             }
             delftind(temp,temp,sttmp[0],sttmp[1]);
             setl++;
-            //printf("At this stage: %s\n",temp);
+            printf("At this stage: %s\n",temp);
         }
     }
     off_set=0;
@@ -193,12 +193,12 @@ int main(){
             memcpy(sttmp,searchsubstr(spsstrcpyv2(temp,bft,off_set,strlen(temp)+1),pattern),2*4);
             off_set=0;
             if(sttmp[0]!=-1&&sttmp[1]!=-1){
-                //printf("Delete from %d to %d for iteration %d of total %d runs\n",sttmp[0],sttmp[1],i,oscount);
+                printf("Delete from %d to %d for iteration %d of total %d runs\n",sttmp[0],sttmp[1],i,oscount);
                 off_set+=sttmp[0]+sttmp[1];
             }
             delftind(temp,temp,sttmp[0],sttmp[1]);
             setl++;
-            //printf("At this stage: %s\n",temp);
+            printf("At this stage: %s\n",temp);
         }
     }
     off_set=0;

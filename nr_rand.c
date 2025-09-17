@@ -68,9 +68,9 @@ int main()
         return 1;
     }
     printf("Enter String: ");
-    scanf("%s",arr);
-    printf("Taken as: %s\n",arr);
-    int len = strlen(arr);
+    //scanf("%s",arr);
+    //printf("Taken as: %s\n",arr);
+    int len = 10000;
     char buffer[20];
     int pos=0;
     char *indarr = malloc(len*5*sizeof(char));
@@ -85,7 +85,7 @@ int main()
         }
         }
     indarr[pos]='\0';
-    printf("Indarr: %s\n",indarr);
+    //printf("Indarr: %s\n",indarr);
     int lenindr = strlen(indarr);
     srand(time(NULL));
     work:
@@ -109,7 +109,7 @@ int main()
         delftind(indarr,indices[0]+1,indices[1]);
         long num = strtol(numb, NULL, 10);
         //printf("So we delete them and now it is: %s\n",indarr);
-        printf("%d\n",num);
+        printf("%d ",num);
         }
         tstr[0] = '\0';
     }

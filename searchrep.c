@@ -45,4 +45,3 @@ int main(){
     printf("Longest rep of %c: %d",c,long_rep);
     rs_et();
 }
-
