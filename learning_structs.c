@@ -2,66 +2,58 @@
 #include <stdlib.h>
 #include <time.h>
 
-struct Block {
+typedef struct {
     size_t count;    // Elements actually used
     size_t capacity; // Total elements allocated
     int arr[];
-};
-
-// Create array with given capacity
-struct Block* create_array(size_t capacity) {
-    struct Block *b = malloc(sizeof(struct Block) + capacity * sizeof(int));
-    if (!b) return NULL;
-
-    b->count = 0;     // Start with 0 elements filled
-    b->capacity = capacity;  // But we have space for 'capacity' elements
-    return b;
-}
+}INT_ARR;
 
 // Add an element (if there's space)
-int add_element(struct Block *b, int value) {
-    if (b->count >= b->capacity) {
+int add_element(INT_ARR *arr1, int val) {
+    if (arr1->count>=arr1->capacity) {
         return 0; // Array full!
     }
-    b->arr[b->count] = value;
-    b->count++;
+    arr1->arr[arr1->count]=val;
+    arr1->count++;
     return 1;
 }
 
-// Fill with random number of elements
-void fill_randomly(struct Block *b, int max_elements) {
-    srand(time(NULL));
-    int elements_to_add = rand() % max_elements + 1;
+INT_ARR *initialize_arrays(int capacity){
+    INT_ARR *arr1 = malloc(sizeof(INT_ARR)+capacity*sizeof(int));
+    if (!arr1) return NULL;
+    arr1->capacity=capacity;
+    arr1->count=0;
+    return arr1;
+}
 
-    for (int i = 0; i < elements_to_add && i < b->capacity; i++) {
-        add_element(b, rand() % 100);
+void fill_randomly_upto(INT_ARR *arr1, int max,int up_to) {
+    static int seeded = 0;
+    if (!seeded){
+        srand(time(NULL));
+        seeded = 1;
+    }
+    if (up_to > arr1->capacity){
+        up_to = arr1->capacity;
+    }
+    for (int i=0;i<up_to;i++) {
+        add_element(arr1,rand()%max+1);
     }
 }
 
-// Print array info
-void print_array_info(struct Block *b) {
-    printf("Capacity: %zu elements allocated\n", b->capacity);
-    printf("Count:    %zu elements actually used\n", b->count);
-    printf("Values:   ");
-    for (size_t i = 0; i < b->count; i++) {
-        printf("%d ", b->arr[i]);
+void print_INT_ARR_status(INT_ARR *arr1){
+    printf("Currently used elements: %zu",arr1->count);
+    printf("\nElements the array can hold at max: %zu\n",arr1->capacity);
+    printf("Elements: \n");
+    for(int i=0;i<(int)arr1->count;i++){
+        printf("%d, ",arr1->arr[i]);
     }
     printf("\n");
 }
 
 int main(void) {
-    // Create array with capacity for 1000 elements
-    struct Block *b = create_array(1000);
-
-    // Fill with random number of elements (less than 1000)
-    fill_randomly(b, 100);
-
-    // Now we know exactly how many are actually used!
-    print_array_info(b);
-
-    printf("We allocated %zu elements but only used %zu of them!\n",
-           b->capacity, b->count);
-
-    free(b);
+    INT_ARR *arr1 = initialize_arrays(100);
+    fill_randomly_upto(arr1,100,50);
+    print_INT_ARR_status(arr1);
+    free(arr1);
     return 0;
 }
