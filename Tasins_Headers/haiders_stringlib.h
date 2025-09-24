@@ -12,8 +12,9 @@ typedef struct{
 
 // Function prototypes
 void spsstrcpy(char a[], char b[], int c);
+void strip_newline(char *s);
 char *delfind(char *arr, int ind);
-void revstr(char *arr);
+char *revstr(char *arr);
 void spsstrcpyv2(const char a[], char b[], int c, int d);
 int *searchsubstr(char *arr, char *subarr);
 void delftind(char *arr, int stind, int edind);
@@ -27,6 +28,13 @@ void spsstrcpy(char a[], char b[], int c) {
     b[c + 1] = '\0';
 }
 
+void strip_newline(char *s) {
+    size_t len = strlen(s);
+    if (len > 0 && s[len-1] == '\n') {
+        s[len-1] = '\0';
+    }
+}
+
 char *delfind(char *arr, int ind) {
     int len = strlen(arr);
     for(int i = ind; i < len; i++) {
@@ -35,14 +43,14 @@ char *delfind(char *arr, int ind) {
     return arr;
 }
 
-void revstr(char *arr) {
+char *revstr(char *arr) {
     int len = strlen(arr);
-    char *arrcp = malloc(len * sizeof(char));
+    char *arrcp = malloc(len*sizeof(char));
     strcpy(arrcp, arr);
     for(int i = 0; i < len; i++) {
-        arr[len - i - 1] = arrcp[i];
+        arr[len-i-1] = arrcp[i];
     }
-    free(arrcp);
+    return arr;
 }
 
 void spsstrcpyv2(const char a[], char b[], int c, int d) {
@@ -54,6 +62,8 @@ void spsstrcpyv2(const char a[], char b[], int c, int d) {
 }
 
 int *searchsubstr(char *arr, char *subarr){
+    strip_newline(arr);
+    strip_newline(subarr);
     int len=strlen(arr);
     int h1=0;
     int incr=strlen(subarr)-1;
@@ -61,17 +71,17 @@ int *searchsubstr(char *arr, char *subarr){
     int *result = malloc(2 * sizeof(int));
     result[0] = result[1] = -1;
     char *buff = malloc((strlen(subarr)+1) * sizeof(char));
-    for(int i=0;h2<len;i++){
-        spsstrcpyv2(arr,buff,h1,h2);
-        if(strcasecmp(buff,subarr)==0){
-            result[0]=h1;
-            result[1]=h2;
+    while (h2 < len){
+        spsstrcpyv2(arr, buff, h1, h2);
+        if (strcasecmp(buff, subarr) == 0){
+            result[0] = h1;
+            result[1] = h2;
             free(buff);
             return result;
+            }
+            h1++;
+            h2++;
         }
-         h1++;
-         h2++;
-    }
     free(buff);
     return result;
 }

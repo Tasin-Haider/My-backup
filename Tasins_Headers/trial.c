@@ -27,6 +27,18 @@ int main(void) {
     for(int i=0;i<(int)list1->cursor;i++){
         printf("%d ",list1->arr[i]);
     }
+    printf("Reversed string: %s\n",revstr(arr));
+    int n1,n2;
+    printf("Enter index to be deleted: ");
+    scanf("%d",&n1);
+    delfind(arr,n1);
+    printf("After %d th index was deleted, The string is: %s\n",n1,arr);
+    printf("Enter index to be deleted from: ");
+    scanf("%d",&n1);
+    printf("Enter index to delete upto: ");
+    scanf("%d",&n2);
+    delftind(arr,n1,n2);
+    printf("After %d th- %d th index was removed, The string is: %s\n",n1,n2,arr);
     free(arr);
     free(subarr);
     free(arr1);
