@@ -1,5 +1,5 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef haiders_stringlib_H
+#define haiders_stringlib_H
 
 #include<stdio.h>
 #include<string.h>
@@ -14,7 +14,7 @@ typedef struct{
 void spsstrcpy(char a[], char b[], int c);
 char *delfind(char *arr, int ind);
 void revstr(char *arr);
-void spsstrcpyv2(char a[], char b[], int c, int d);
+void spsstrcpyv2(const char a[], char b[], int c, int d);
 int *searchsubstr(char *arr, char *subarr);
 void delftind(char *arr, int stind, int edind);
 REPEATATION_LIST *search_reps(char *arr, char c);
@@ -45,35 +45,32 @@ void revstr(char *arr) {
     free(arrcp);
 }
 
-void spsstrcpyv2(char a[], char b[], int c, int d) {
+void spsstrcpyv2(const char a[], char b[], int c, int d) {
     int j = 0;
-    for(int i = c; i != d + 1; i++) {
-        b[j] = a[i];
-        j++;
+    for (int i = c; i <= d && a[i] != '\0'; i++) {
+        b[j++] = a[i];
     }
     b[j] = '\0';
-    j = 0;
 }
 
-int *searchsubstr(char *arr, char *subarr) {
-    int len = strlen(arr);
-    int h1 = 0;
-    int incr = strlen(subarr) - 1;
-    int h2 = incr;
+int *searchsubstr(char *arr, char *subarr){
+    int len=strlen(arr);
+    int h1=0;
+    int incr=strlen(subarr)-1;
+    int h2=incr;
     int *result = malloc(2 * sizeof(int));
     result[0] = result[1] = -1;
-    char *buff = malloc((strlen(subarr) + 1) * sizeof(char));
-
-    for(int i = 0; h2 < len; i++) {
-        spsstrcpyv2(arr, buff, h1, h2);
-        if(strcasecmp(buff, subarr) == 0) {
-            result[0] = h1;
-            result[1] = h2;
+    char *buff = malloc((strlen(subarr)+1) * sizeof(char));
+    for(int i=0;h2<len;i++){
+        spsstrcpyv2(arr,buff,h1,h2);
+        if(strcasecmp(buff,subarr)==0){
+            result[0]=h1;
+            result[1]=h2;
             free(buff);
             return result;
         }
-        h1++;
-        h2++;
+         h1++;
+         h2++;
     }
     free(buff);
     return result;
@@ -123,4 +120,4 @@ REPEATATION_LIST *search_reps(char *arr, char c) {
     return list1;
 }
 
-#endif // MAIN_H
+#endif // haiders_stringlib_H
