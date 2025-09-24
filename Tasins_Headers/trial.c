@@ -13,9 +13,9 @@ int main(void) {
         return 1;
     }
     printf("Enter String: ");
-    fgets(arr,99,stdin);
+    fgets(arr,100,stdin);
     printf("Enter Sub String: ");
-    fgets(subarr,99,stdin);
+    fgets(subarr,100,stdin);
     printf("Enter Char: ");
     scanf(" %c",&c);
     printf("String Taken as: %s\n",arr);
@@ -47,3 +47,4 @@ int main(void) {
     free(arr1);
     return 0;
 }
+
