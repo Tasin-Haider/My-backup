@@ -21,6 +21,9 @@ int main(void) {
     printf("String Taken as: %s\n",arr);
     printf("Sub string Taken as: %s\n",subarr);
     int *indices = searchsubstr(arr,subarr);
+    if(indices[0]==-1&&indices[1]==-1){
+        printf("Substring %s does not exist in string %s\n",subarr,arr);
+    }
     printf("Match found from index %d to index %d\n",indices[0],indices[1]);
     REPEATATION_LIST *list1=search_reps(arr,c);
     printf("List size should be %zu\n",list1->cursor);
