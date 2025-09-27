@@ -1,7 +1,7 @@
 #include <stdio.h>
-int j=0;
 
-void spsstrcpy(char a[], char b[], int c, int d){
+void spsstrcpyv2(char a[], char b[], int c, int d){
+    int j=0;
     for(int i=c;i!=d+1;i++){
         b[j]=a[i];
         //printf("\n %d %d",j,i);
@@ -22,7 +22,7 @@ int main() {
     printf("Copy to[Index]: ");
     scanf("%d",&d);
     printf("Taken as: %s",a);
-    spsstrcpy(a, bft, c, d);
+    spsstrcpyv2(a, bft, c, d);
     printf("%s",bft);
     return 0;
 }
