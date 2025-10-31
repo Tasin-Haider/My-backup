@@ -16,6 +16,8 @@ INT_ARR *initialize_arrays(int capacity);
 int add_element(INT_ARR *arr1, int val);
 void fill_randomly_upto(INT_ARR *arr1, int max, int up_to);
 void print_INT_ARR_status(INT_ARR *arr1);
+int get_elment(INT_ARR *arr1, int ind);
+void set_elment(INT_ARR *arr1, int val, int ind);
 
 // Function implementations
 INT_ARR *initialize_arrays(int capacity) {
@@ -33,6 +35,14 @@ int add_element(INT_ARR *arr1, int val) {
     arr1->arr[arr1->count] = val;
     arr1->count++;
     return 1;
+}
+
+int get_elment(INT_ARR *arr1, int ind){
+    return arr1->arr[ind];
+}
+
+void set_elment(INT_ARR *arr1, int val, int ind){
+    arr1->arr[ind]=val;
 }
 
 void fill_randomly_upto(INT_ARR *arr1, int max, int up_to) {
