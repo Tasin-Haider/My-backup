@@ -26,6 +26,14 @@ INT_ARR *initialize_arrays(int capacity){
     return arr1;
 }
 
+int get_elment(INT_ARR *arr1, int ind){
+    return arr1->arr[ind];
+}
+
+void set_elment(INT_ARR *arr1, int val, int ind){
+    arr1->arr[ind]=val;
+}
+
 void fill_randomly_upto(INT_ARR *arr1, int max,int up_to) {
     static int seeded = 0;
     if (!seeded){
@@ -54,6 +62,10 @@ int main(void) {
     INT_ARR *arr1 = initialize_arrays(100);
     fill_randomly_upto(arr1,100,50);
     print_INT_ARR_status(arr1);
+    printf("%d\n",get_elment(arr1,0));
+    set_elment(arr1,5,0);
+    printf("%d",get_elment(arr1,0));
     free(arr1);
     return 0;
 }
+    
