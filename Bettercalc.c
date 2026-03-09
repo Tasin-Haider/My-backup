@@ -9,7 +9,7 @@ int main()
  system("cls");
  printf("Welcome User\n");
  printf("What would you like to do?\n");
- printf("To know more about this programme enter (0)\n");
+ printf("To know more about this program enter (0)\n");
  int i;
  printf("Enter Option: ");
  scanf("%d",&i);
@@ -75,7 +75,7 @@ int help()
   system("cls");
   printf("Available Options:\n");
   printf("1)Addition: Finds Summation of First and Second Number,To use enter (1)\n");
-  printf("2)Substraction: Finds The Subtracted value of First number to the Second number, To use enter (2)\n");
+  printf("2)Subtraction: Finds The Subtracted value of First number to the Second number, To use enter (2)\n");
   printf("3)Multiplication: Finds the product of two provided numbers, To use enter (3)\n");
   goback();
  }
@@ -85,7 +85,7 @@ int help()
  }
  if (k==3)
  {
-  printf("You have succesfully Exited");
+  printf("You have successfully Exited");
   return 0;
  }
 }

@@ -48,6 +48,16 @@ void fill_randomly_upto(INT_ARR *arr1, int max,int up_to) {
     }
 }
 
+int remove_element_at(INT_ARR *arr,int index){
+    if(index >= arr->count)
+        return 0;
+    for(int i=index;i<arr->count-1;i++){
+        arr->arr[i]=arr->arr[i+1];
+    }
+    arr->count--;
+    return 1;
+}
+
 void print_INT_ARR_status(INT_ARR *arr1){
     printf("Currently used elements: %zu",arr1->count);
     printf("\nElements the array can hold at max: %zu\n",arr1->capacity);
@@ -68,4 +78,3 @@ int main(void) {
     free(arr1);
     return 0;
 }
-    
