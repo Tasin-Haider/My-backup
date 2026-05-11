@@ -54,6 +54,7 @@ int main()
   scanf("%d",&b);
   int c = a * b;
   printf("Multiplication of %d and %d is %d\n", a, b ,c);
+  ext();
  }
 
 
